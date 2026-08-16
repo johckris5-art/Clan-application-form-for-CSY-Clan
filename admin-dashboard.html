@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSY Clan Admin Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #2563eb;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .application {
+            background: #1e293b;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+
+        .application p {
+            margin: 8px 0;
+        }
+
+        .photos {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .photos img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .error {
+            color: #f87171;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>CSY Clan Admin Dashboard</h1>
+
+    <button id="logoutButton">Logout</button>
+
+    <div id="applications">
+        Loading applications...
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL = "https://cyytsritaemtalrqrusx.supabase.co";
+const SUPABASE_KEY = "sb_publishable_UBCO84_MwNgM1UGrYbioug_yUwfD4sh";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+// Check if admin is logged in
+async function checkLogin() {
+
+    const { data } = await supabaseClient.auth.getSession();
+
+    if (!data.session) {
+        window.location.href = "admin.html";
+        return false;
+    }
+
+    return true;
+}
+
+
+// Load applications
+async function loadApplications() {
+
+    const loggedIn = await checkLogin();
+
+    if (!loggedIn) {
+        return;
+    }
+
+    const { data, error } = await supabaseClient
+        .from("applications")
+        .select("*")
+        .order("id", { ascending: false });
+
+    if (error) {
+
+        document.getElementById("applications").innerHTML =
+            "<p class='error'>Unable to load applications: "
+            + error.message +
+            "</p>";
+
+        return;
+    }
+
+    const container = document.getElementById("applications");
+
+    if (!data || data.length === 0) {
+
+        container.innerHTML =
+            "<p>No applications yet.</p>";
+
+        return;
+    }
+
+    container.innerHTML = "";
+
+    data.forEach(application => {
+
+        const item = document.createElement("div");
+
+        item.className = "application";
+
+        item.innerHTML = `
+            <h2>Applicant</h2>
+
+            <p>
+                <strong>Name:</strong>
+                ${application.name}
+            </p>
+
+            <p>
+                <strong>Birthday:</strong>
+                ${application.birthday}
+            </p>
+
+            <div class="photos">
+
+                <div>
+                    <p>Selfie</p>
+                    <img src="${application.selfie_url}">
+                </div>
+
+                <div>
+                    <p>CODM Profile</p>
+                    <img src="${application.codm_profile_url}">
+                </div>
+
+                <div>
+                    <p>Streamer Mode</p>
+                    <img src="${application.streamer_mode_url}">
+                </div>
+
+            </div>
+        `;
+
+        container.appendChild(item);
+
+    });
+}
+
+
+// Logout
+document.getElementById("logoutButton")
+.addEventListener("click", async function() {
+
+    await supabaseClient.auth.signOut();
+
+    window.location.href = "admin.html";
+
+});
+
+
+loadApplications();
+
+</script>
+
+</body>
+</html>
