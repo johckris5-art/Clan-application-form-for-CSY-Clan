@@ -99,18 +99,33 @@ preview("selfie","selfiePreview");
 preview("codmProfile","codmPreview");
 preview("codmStreamer","streamerPreview");
 
-document.getElementById("applicationForm").addEventListener("submit",function(e){
-  e.preventDefault();
+document.getElementById("applicationForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
 
-  const name=document.getElementById("name").value;
-  const birthday=document.getElementById("birthday").value;
+    const name = document.getElementById("name").value;
+    const birthday = document.getElementById("birthday").value;
 
-  document.getElementById("summary").innerHTML =
-    "<strong>Name:</strong> " + name +
-    "<br><strong>Birthday:</strong> " + birthday;
+    const { data, error } = await supabaseClient
+        .from("applications")
+        .insert([
+            {
+                name: name,
+                birthday: birthday
+            }
+        ]);
 
-  this.style.display="none";
-  document.getElementById("success").style.display="block";
+    if (error) {
+        console.error(error);
+        alert("Failed to submit application: " + error.message);
+        return;
+    }
+
+    document.getElementById("summary").innerHTML =
+        "<strong>Name:</strong> " + name +
+        "<br><strong>Birthday:</strong> " + birthday;
+
+    this.style.display = "none";
+    document.getElementById("success").style.display = "block";
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
