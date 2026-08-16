@@ -121,28 +121,40 @@ async function loadApplications() {
         .order("id", { ascending: false });
 
     if (error) {
-
         document.getElementById("applications").innerHTML =
             "<p class='error'>Unable to load applications: "
             + error.message +
             "</p>";
-
         return;
     }
 
     const container = document.getElementById("applications");
 
     if (!data || data.length === 0) {
-
-        container.innerHTML =
-            "<p>No applications yet.</p>";
-
+        container.innerHTML = "<p>No applications yet.</p>";
         return;
     }
 
     container.innerHTML = "";
 
-    data.forEach(application => {
+    for (const application of data) {
+
+        // Create temporary links for the private photos
+        const selfie = await supabaseClient.storage
+            .from("application-photos")
+            .createSignedUrl(application.selfie_url, 3600);
+
+        const codm = await supabaseClient.storage
+            .from("application-photos")
+            .createSignedUrl(application.codm_profile_url, 3600);
+
+        const streamer = await supabaseClient.storage
+            .from("application-photos")
+            .createSignedUrl(application.streamer_mode_url, 3600);
+
+        const selfieUrl = selfie.data?.signedUrl || "";
+        const codmUrl = codm.data?.signedUrl || "";
+        const streamerUrl = streamer.data?.signedUrl || "";
 
         const item = document.createElement("div");
 
@@ -165,28 +177,25 @@ async function loadApplications() {
 
                 <div>
                     <p>Selfie</p>
-                    <img src="${application.selfie_url}">
+                    <img src="${selfieUrl}" alt="Selfie">
                 </div>
 
                 <div>
                     <p>CODM Profile</p>
-                    <img src="${application.codm_profile_url}">
+                    <img src="${codmUrl}" alt="CODM Profile">
                 </div>
 
                 <div>
                     <p>Streamer Mode</p>
-                    <img src="${application.streamer_mode_url}">
+                    <img src="${streamerUrl}" alt="Streamer Mode">
                 </div>
 
             </div>
         `;
 
         container.appendChild(item);
-
-    });
+    }
 }
-
-
 // Logout
 document.getElementById("logoutButton")
 .addEventListener("click", async function() {
