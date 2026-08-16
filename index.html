@@ -113,6 +113,18 @@ document.getElementById("applicationForm").addEventListener("submit",function(e)
   document.getElementById("success").style.display="block";
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+    const SUPABASE_URL = "https://cyytsritaemtalrqrusx.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_UBCO84_MwNgM1UGrYbioug_yUwfD4sh";
+
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+    console.log("Supabase connected!");
+</script>
 </body>
 </html>
