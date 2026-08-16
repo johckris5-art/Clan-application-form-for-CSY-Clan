@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODM Applicant Registration</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Arial,sans-serif;background:#0b1120;color:#fff;
+  min-height:100vh;padding:20px 12px;
+}
+.card{
+  width:100%;max-width:520px;margin:auto;background:#172033;
+  border-radius:18px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.35)
+}
+h1{text-align:center;font-size:25px;margin:0 0 8px}
+.subtitle{text-align:center;color:#b9c4d6;margin:0 0 25px;font-size:14px}
+label{display:block;font-weight:bold;margin:18px 0 7px}
+input[type=text],input[type=date],input[type=file]{
+  width:100%;padding:13px;border:1px solid #39465d;border-radius:9px;
+  background:#0f172a;color:#fff;font-size:15px
+}
+input[type=file]{padding:10px}
+.preview{
+  display:none;width:100%;max-height:220px;object-fit:contain;margin-top:10px;
+  border-radius:10px;background:#0f172a
+}
+button{
+  width:100%;padding:14px;border:0;border-radius:10px;margin-top:25px;
+  background:#2563eb;color:#fff;font-size:16px;font-weight:bold
+}
+button:active{transform:scale(.99)}
+.success{
+  display:none;text-align:center;background:#132e24;border:1px solid #1f9d67;
+  padding:18px;border-radius:12px;margin-top:20px
+}
+.note{font-size:12px;color:#9ca9bd;line-height:1.5;margin-top:18px}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>🎮 CODM Applicant</h1>
+  <p class="subtitle">Complete the form to submit your application.</p>
+
+  <form id="applicationForm">
+
+    <label for="name">Full Name</label>
+    <input id="name" type="text" placeholder="Enter your full name" required>
+
+    <label for="birthday">Birthday</label>
+    <input id="birthday" type="date" required>
+
+    <label for="selfie">🤳 Selfie</label>
+    <input id="selfie" type="file" accept="image/*" capture="user" required>
+    <img id="selfiePreview" class="preview" alt="Selfie preview">
+
+    <label for="codmProfile">🎮 CODM Profile Picture</label>
+    <input id="codmProfile" type="file" accept="image/*" required>
+    <img id="codmPreview" class="preview" alt="CODM profile preview">
+
+    <label for="codmStreamer">🎮 CODM Profile Picture (Streamer Mode)</label>
+    <input id="codmStreamer" type="file" accept="image/*" required>
+    <img id="streamerPreview" class="preview" alt="Streamer mode preview">
+
+    <button type="submit">Submit Application</button>
+  </form>
+
+  <div id="success" class="success">
+    <h2>✅ Application Submitted!</h2>
+    <p>Thank you for submitting your CODM application.</p>
+    <p id="summary"></p>
+  </div>
+
+  <p class="note">
+    Demo version: information is only processed in this browser and is not
+    automatically sent to a server or stored in an online database.
+  </p>
+</div>
+
+<script>
+function preview(inputId, previewId){
+  const input=document.getElementById(inputId);
+  const preview=document.getElementById(previewId);
+
+  input.addEventListener("change",function(){
+    const file=this.files[0];
+    if(file){
+      preview.src=URL.createObjectURL(file);
+      preview.style.display="block";
+    }else{
+      preview.style.display="none";
+    }
+  });
+}
+
+preview("selfie","selfiePreview");
+preview("codmProfile","codmPreview");
+preview("codmStreamer","streamerPreview");
+
+document.getElementById("applicationForm").addEventListener("submit",function(e){
+  e.preventDefault();
+
+  const name=document.getElementById("name").value;
+  const birthday=document.getElementById("birthday").value;
+
+  document.getElementById("summary").innerHTML =
+    "<strong>Name:</strong> " + name +
+    "<br><strong>Birthday:</strong> " + birthday;
+
+  this.style.display="none";
+  document.getElementById("success").style.display="block";
+});
+</script>
+
+</body>
+</html>
