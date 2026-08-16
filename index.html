@@ -3,201 +3,582 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODM Applicant Registration</title>
+
+<title>CSY Clan Application Form</title>
+
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;font-family:Arial,sans-serif;background:#0b1120;color:#fff;
-  min-height:100vh;padding:20px 12px;
+* {
+  box-sizing: border-box;
 }
-.card{
-  width:100%;max-width:520px;margin:auto;background:#172033;
-  border-radius:18px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.35)
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1120;
+  color: #fff;
+  min-height: 100vh;
+  padding: 20px 12px;
 }
-h1{text-align:center;font-size:25px;margin:0 0 8px}
-.subtitle{text-align:center;color:#b9c4d6;margin:0 0 25px;font-size:14px}
-label{display:block;font-weight:bold;margin:18px 0 7px}
-input[type=text],input[type=date],input[type=file]{
-  width:100%;padding:13px;border:1px solid #39465d;border-radius:9px;
-  background:#0f172a;color:#fff;font-size:15px
+
+.card {
+  width: 100%;
+  max-width: 520px;
+  margin: auto;
+  background: #172033;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
 }
-input[type=file]{padding:10px}
-.preview{
-  display:none;width:100%;max-height:220px;object-fit:contain;margin-top:10px;
-  border-radius:10px;background:#0f172a
+
+h1 {
+  text-align: center;
+  font-size: 25px;
+  margin: 0 0 8px;
 }
-button{
-  width:100%;padding:14px;border:0;border-radius:10px;margin-top:25px;
-  background:#2563eb;color:#fff;font-size:16px;font-weight:bold
+
+.subtitle {
+  text-align: center;
+  color: #b9c4d6;
+  margin: 0 0 25px;
+  font-size: 14px;
 }
-button:active{transform:scale(.99)}
-.success{
-  display:none;text-align:center;background:#132e24;border:1px solid #1f9d67;
-  padding:18px;border-radius:12px;margin-top:20px
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 18px 0 7px;
 }
-.note{font-size:12px;color:#9ca9bd;line-height:1.5;margin-top:18px}
+
+input[type=text],
+input[type=date],
+input[type=file] {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #39465d;
+  border-radius: 9px;
+  background: #0f172a;
+  color: #fff;
+  font-size: 15px;
+}
+
+input[type=file] {
+  padding: 10px;
+}
+
+.preview {
+  display: none;
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #0f172a;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border: 0;
+  border-radius: 10px;
+  margin-top: 25px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(.99);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.success {
+  display: none;
+  text-align: center;
+  background: #132e24;
+  border: 1px solid #1f9d67;
+  padding: 18px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.note {
+  font-size: 12px;
+  color: #9ca9bd;
+  line-height: 1.5;
+  margin-top: 18px;
+}
 </style>
 </head>
+
 <body>
 
 <div class="card">
+
   <h1>CSY CLAN APPLICATION FORM</h1>
-  <p class="subtitle">Complete the form to submit your application.</p>
+
+  <p class="subtitle">
+    Complete the form to submit your application.
+  </p>
 
   <form id="applicationForm">
 
     <label for="name">Full Name</label>
-    <input id="name" type="text" placeholder="Enter your full name" required>
+
+    <input
+      id="name"
+      type="text"
+      placeholder="Enter your full name"
+      required
+    >
+
 
     <label for="birthday">Birthday</label>
-    <input id="birthday" type="date" required>
+
+    <input
+      id="birthday"
+      type="date"
+      required
+    >
+
 
     <label for="selfie">Your Photo</label>
-    <input type="file" id="selfie" accept="image/*" required>
-    <img id="selfiePreview" class="preview" alt="Selfie preview">
 
-    <label for="codmProfile">CODM Profile Picture</label>
-    <input id="codmProfile" type="file" accept="image/*" required>
-    <img id="codmPreview" class="preview" alt="CODM profile preview">
+    <input
+      type="file"
+      id="selfie"
+      accept="image/*"
+      required
+    >
 
-    <label for="codmStreamer">CODM Profile Picture (Streamer Mode)</label>
-    <input id="codmStreamer" type="file" accept="image/*" required>
-    <img id="streamerPreview" class="preview" alt="Streamer mode preview">
+    <img
+      id="selfiePreview"
+      class="preview"
+      alt="Your photo preview"
+    >
 
-    <button type="submit">Submit Application</button>
+
+    <label for="codmProfile">
+      CODM Profile Picture
+    </label>
+
+    <input
+      id="codmProfile"
+      type="file"
+      accept="image/*"
+      required
+    >
+
+    <img
+      id="codmPreview"
+      class="preview"
+      alt="CODM profile preview"
+    >
+
+
+    <label for="codmStreamer">
+      CODM Profile Picture (Streamer Mode)
+    </label>
+
+    <input
+      id="codmStreamer"
+      type="file"
+      accept="image/*"
+      required
+    >
+
+    <img
+      id="streamerPreview"
+      class="preview"
+      alt="Streamer mode preview"
+    >
+
+
+    <button
+      type="submit"
+      id="submitButton"
+    >
+      Submit Application
+    </button>
+
   </form>
 
+
   <div id="success" class="success">
+
     <h2>✅ Application Submitted!</h2>
-    <p>Thank you for submitting your CODM application.</p>
+
+    <p>
+      Thank you for submitting your CSY Clan application.
+    </p>
+
     <p id="summary"></p>
+
   </div>
 
+
   <p class="note">
-    Demo version: information is only processed in this browser and is not
-    automatically sent to a server or stored in an online database.
+    Your application information and uploaded pictures will be
+    submitted for clan application review.
   </p>
+
 </div>
 
-<script>
-function preview(inputId, previewId){
-  const input=document.getElementById(inputId);
-  const preview=document.getElementById(previewId);
 
-  input.addEventListener("change",function(){
-    const file=this.files[0];
-    if(file){
-      preview.src=URL.createObjectURL(file);
-      preview.style.display="block";
-    }else{
-      preview.style.display="none";
-    }
-  });
-}
-
-preview("selfie","selfiePreview");
-preview("codmProfile","codmPreview");
-preview("codmStreamer","streamerPreview");
-
-document.getElementById("applicationForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const birthday = document.getElementById("birthday").value;
-
-    const selfie = document.getElementById("selfie").files[0];
-    const codmProfile = document.getElementById("codmProfile").files[0];
-    const codmStreamer = document.getElementById("codmStreamer").files[0];
-
-    if (!selfie || !codmProfile || !codmStreamer) {
-        alert("Please select all three pictures.");
-        return;
-    }
-
-    try {
-
-        const timestamp = Date.now();
-
-        // Upload Selfie
-        const selfiePath = "selfies/" + timestamp + "-" + selfie.name;
-
-        const { error: selfieError } =
-            await supabaseClient.storage
-                .from("application-photos")
-                .upload(selfiePath, selfie);
-
-        if (selfieError) throw selfieError;
-
-
-        // Upload CODM Profile
-        const codmPath = "codm-profiles/" + timestamp + "-" + codmProfile.name;
-
-        const { error: codmError } =
-            await supabaseClient.storage
-                .from("application-photos")
-                .upload(codmPath, codmProfile);
-
-        if (codmError) throw codmError;
-
-
-        // Upload Streamer Mode
-        const streamerPath = "streamer-mode/" + timestamp + "-" + codmStreamer.name;
-
-        const { error: streamerError } =
-            await supabaseClient.storage
-                .from("application-photos")
-                .upload(streamerPath, codmStreamer);
-
-        if (streamerError) throw streamerError;
-
-
-        // Save application information
-        const { error: databaseError } =
-            await supabaseClient
-                .from("applications")
-                .insert([
-                    {
-                        name: name,
-                        birthday: birthday,
-                        selfie_url: selfiePath,
-                        codm_profile_url: codmPath,
-                        streamer_mode_url: streamerPath
-                    }
-                ]);
-
-        if (databaseError) throw databaseError;
-
-
-        // Show success message
-        document.getElementById("summary").innerHTML =
-            "<strong>Name:</strong> " + name +
-            "<br><strong>Birthday:</strong> " + birthday;
-
-        this.style.display = "none";
-        document.getElementById("success").style.display = "block";
-
-        alert("Application submitted successfully!");
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert("Submission failed: " + error.message);
-    }
-});
-</script>
+<!-- Supabase library -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
-    const SUPABASE_URL = "https://cyytsritaemtalrqrusx.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_UBCO84_MwNgM1UGrYbioug_yUwfD4sh";
 
-    const supabaseClient = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+/* ================================
+   SUPABASE CONNECTION
+================================ */
 
-    console.log("Supabase connected!");
+const SUPABASE_URL =
+  "https://cyytsritaemtalrqrusx.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_UBCO84_MwNgM1UGrYbioug_yUwfD4sh";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+console.log("Supabase connected!");
+
+
+
+/* ================================
+   IMAGE PREVIEW
+================================ */
+
+function preview(inputId, previewId) {
+
+  const input =
+    document.getElementById(inputId);
+
+  const preview =
+    document.getElementById(previewId);
+
+
+  input.addEventListener("change", function() {
+
+    const file = this.files[0];
+
+
+    if (file) {
+
+      preview.src =
+        URL.createObjectURL(file);
+
+      preview.style.display = "block";
+
+    } else {
+
+      preview.style.display = "none";
+
+    }
+
+  });
+
+}
+
+
+preview(
+  "selfie",
+  "selfiePreview"
+);
+
+
+preview(
+  "codmProfile",
+  "codmPreview"
+);
+
+
+preview(
+  "codmStreamer",
+  "streamerPreview"
+);
+
+
+
+/* ================================
+   SUBMIT APPLICATION
+================================ */
+
+document
+  .getElementById("applicationForm")
+  .addEventListener(
+    "submit",
+    async function(e) {
+
+      e.preventDefault();
+
+
+      const submitButton =
+        document.getElementById(
+          "submitButton"
+        );
+
+
+      /* Get applicant information */
+
+      const name =
+        document.getElementById(
+          "name"
+        ).value.trim();
+
+
+      const birthday =
+        document.getElementById(
+          "birthday"
+        ).value;
+
+
+      /* Get selected pictures */
+
+      const selfie =
+        document.getElementById(
+          "selfie"
+        ).files[0];
+
+
+      const codmProfile =
+        document.getElementById(
+          "codmProfile"
+        ).files[0];
+
+
+      const codmStreamer =
+        document.getElementById(
+          "codmStreamer"
+        ).files[0];
+
+
+      /* Check pictures */
+
+      if (
+        !selfie ||
+        !codmProfile ||
+        !codmStreamer
+      ) {
+
+        alert(
+          "Please select all three pictures."
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        /* Disable button */
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+          "Submitting...";
+
+
+        /*
+          Create a unique folder for this application.
+        */
+
+        const applicationFolder =
+          Date.now().toString();
+
+
+        /* ================================
+           UPLOAD YOUR PHOTO
+        ================================= */
+
+        const selfiePath =
+          "selfies/" +
+          applicationFolder +
+          "-" +
+          selfie.name;
+
+
+        const {
+          error: selfieError
+        } =
+          await supabaseClient
+            .storage
+            .from("application-photos")
+            .upload(
+              selfiePath,
+              selfie
+            );
+
+
+        if (selfieError) {
+
+          throw selfieError;
+
+        }
+
+
+        /* ================================
+           UPLOAD CODM PROFILE
+        ================================= */
+
+        const codmPath =
+          "codm-profiles/" +
+          applicationFolder +
+          "-" +
+          codmProfile.name;
+
+
+        const {
+          error: codmError
+        } =
+          await supabaseClient
+            .storage
+            .from("application-photos")
+            .upload(
+              codmPath,
+              codmProfile
+            );
+
+
+        if (codmError) {
+
+          throw codmError;
+
+        }
+
+
+        /* ================================
+           UPLOAD STREAMER MODE
+        ================================= */
+
+        const streamerPath =
+          "streamer-mode/" +
+          applicationFolder +
+          "-" +
+          codmStreamer.name;
+
+
+        const {
+          error: streamerError
+        } =
+          await supabaseClient
+            .storage
+            .from("application-photos")
+            .upload(
+              streamerPath,
+              codmStreamer
+            );
+
+
+        if (streamerError) {
+
+          throw streamerError;
+
+        }
+
+
+        /* ================================
+           SAVE APPLICATION TO DATABASE
+        ================================= */
+
+        const {
+          error: databaseError
+        } =
+          await supabaseClient
+            .from("applications")
+            .insert([
+              {
+                name: name,
+
+                birthday: birthday,
+
+                selfie_url:
+                  selfiePath,
+
+                codm_profile_url:
+                  codmPath,
+
+                streamer_mode_url:
+                  streamerPath
+              }
+            ]);
+
+
+        if (databaseError) {
+
+          throw databaseError;
+
+        }
+
+
+        /* ================================
+           SUCCESS
+        ================================= */
+
+        document
+          .getElementById("summary")
+          .innerHTML =
+            "<strong>Name:</strong> " +
+            name +
+            "<br><strong>Birthday:</strong> " +
+            birthday;
+
+
+        document
+          .getElementById("applicationForm")
+          .style.display = "none";
+
+
+        document
+          .getElementById("success")
+          .style.display = "block";
+
+
+        alert(
+          "Application submitted successfully!"
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Submission error:",
+          error
+        );
+
+
+        alert(
+          "Submission failed: " +
+          error.message
+        );
+
+
+        /* Enable button again */
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+          "Submit Application";
+
+      }
+
+    }
+  );
+
 </script>
+
 </body>
 </html>
