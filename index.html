@@ -105,27 +105,85 @@ document.getElementById("applicationForm").addEventListener("submit", async func
     const name = document.getElementById("name").value;
     const birthday = document.getElementById("birthday").value;
 
-    const { data, error } = await supabaseClient
-        .from("applications")
-        .insert([
-            {
-                name: name,
-                birthday: birthday
-            }
-        ]);
+    const selfie = document.getElementById("selfie").files[0];
+    const codmProfile = document.getElementById("codmProfile").files[0];
+    const codmStreamer = document.getElementById("codmStreamer").files[0];
 
-    if (error) {
-        console.error(error);
-        alert("Failed to submit application: " + error.message);
+    if (!selfie || !codmProfile || !codmStreamer) {
+        alert("Please select all three pictures.");
         return;
     }
 
-    document.getElementById("summary").innerHTML =
-        "<strong>Name:</strong> " + name +
-        "<br><strong>Birthday:</strong> " + birthday;
+    try {
 
-    this.style.display = "none";
-    document.getElementById("success").style.display = "block";
+        const timestamp = Date.now();
+
+        // Upload Selfie
+        const selfiePath = "selfies/" + timestamp + "-" + selfie.name;
+
+        const { error: selfieError } =
+            await supabaseClient.storage
+                .from("application-photos")
+                .upload(selfiePath, selfie);
+
+        if (selfieError) throw selfieError;
+
+
+        // Upload CODM Profile
+        const codmPath = "codm-profiles/" + timestamp + "-" + codmProfile.name;
+
+        const { error: codmError } =
+            await supabaseClient.storage
+                .from("application-photos")
+                .upload(codmPath, codmProfile);
+
+        if (codmError) throw codmError;
+
+
+        // Upload Streamer Mode
+        const streamerPath = "streamer-mode/" + timestamp + "-" + codmStreamer.name;
+
+        const { error: streamerError } =
+            await supabaseClient.storage
+                .from("application-photos")
+                .upload(streamerPath, codmStreamer);
+
+        if (streamerError) throw streamerError;
+
+
+        // Save application information
+        const { error: databaseError } =
+            await supabaseClient
+                .from("applications")
+                .insert([
+                    {
+                        name: name,
+                        birthday: birthday,
+                        selfie_url: selfiePath,
+                        codm_profile_url: codmPath,
+                        streamer_mode_url: streamerPath
+                    }
+                ]);
+
+        if (databaseError) throw databaseError;
+
+
+        // Show success message
+        document.getElementById("summary").innerHTML =
+            "<strong>Name:</strong> " + name +
+            "<br><strong>Birthday:</strong> " + birthday;
+
+        this.style.display = "none";
+        document.getElementById("success").style.display = "block";
+
+        alert("Application submitted successfully!");
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Submission failed: " + error.message);
+    }
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
