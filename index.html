@@ -10,34 +10,48 @@
 * {
   box-sizing: border-box;
 }
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background:
-    radial-gradient(circle at top left, rgba(255, 150, 200, 0.18), transparent 35%),
-    radial-gradient(circle at bottom right, rgba(255, 105, 180, 0.15), transparent 35%),
-    #050505;
   color: #fff;
   min-height: 100vh;
   padding: 25px 12px;
+  position: relative;
+  overflow-x: hidden;
+  background: #050505;
 }
-
-/* Main registration card */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20px;
+  background-image: url("csy-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(6px);
+  transform: scale(1.05);
+  z-index: -2;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: -1;
+}
 .card {
   width: 100%;
   max-width: 520px;
   margin: auto;
-  background: rgba(10, 10, 10, 0.95);
+  background: rgba(5, 5, 5, 0.88);
   border: 1px solid #ff9dcc;
   border-radius: 18px;
   padding: 25px;
   box-shadow:
-    0 0 20px rgba(255, 157, 204, 0.18),
-    0 10px 40px rgba(0, 0, 0, 0.7);
+    0 0 25px rgba(255, 157, 204, 0.25),
+    0 10px 40px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
 }
-
-/* Title */
 h1 {
   text-align: center;
   font-size: 26px;
@@ -45,23 +59,18 @@ h1 {
   color: #ffd1e7;
   text-shadow: 0 0 12px rgba(255, 157, 204, 0.8);
 }
-
 .subtitle {
   text-align: center;
   color: #d9b8c8;
   margin: 0 0 25px;
   font-size: 14px;
 }
-
-/* Labels */
 label {
   display: block;
   font-weight: bold;
   margin: 18px 0 7px;
   color: #ffc1df;
 }
-
-/* Text/date/file inputs */
 input[type=text],
 input[type=date],
 input[type=file] {
@@ -74,17 +83,13 @@ input[type=file] {
   font-size: 15px;
   outline: none;
 }
-
 input:focus {
   border-color: #ff9dcc;
   box-shadow: 0 0 10px rgba(255, 157, 204, 0.35);
 }
-
 input[type=file] {
   padding: 10px;
 }
-
-/* Image preview */
 .preview {
   display: none;
   width: 100%;
@@ -95,8 +100,6 @@ input[type=file] {
   background: #050505;
   border: 1px solid #6e4056;
 }
-
-/* Submit button */
 button {
   width: 100%;
   padding: 14px;
@@ -111,17 +114,13 @@ button {
   box-shadow: 0 0 18px rgba(255, 114, 182, 0.45);
   transition: 0.2s;
 }
-
 button:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 25px rgba(255, 157, 204, 0.75);
 }
-
 button:active {
   transform: scale(0.98);
 }
-
-/* Success message */
 .success {
   display: none;
   text-align: center;
@@ -132,12 +131,9 @@ button:active {
   margin-top: 20px;
   box-shadow: 0 0 15px rgba(255, 157, 204, 0.2);
 }
-
 .success h2 {
   color: #ffb6d9;
 }
-
-/* Group chat button */
 .join-button {
   display: block;
   width: 100%;
@@ -152,20 +148,16 @@ button:active {
   box-shadow: 0 0 18px rgba(255, 114, 182, 0.4);
   transition: 0.2s;
 }
-
 .join-button:hover {
   opacity: 0.9;
   box-shadow: 0 0 25px rgba(255, 157, 204, 0.7);
 }
-
-/* Contact section */
 .contact-info {
   margin-top: 25px;
   padding-top: 20px;
   border-top: 1px solid #70445a;
   text-align: center;
 }
-
 .contact-info h3 {
   margin: 0 0 15px;
   color: #ffb6d9;
@@ -176,19 +168,15 @@ button:active {
   color: #d9b8c8;
   font-size: 14px;
 }
-
 .contact-info a {
   color: #ff9dcc;
   text-decoration: none;
   font-weight: bold;
 }
-
 .contact-info a:hover {
   text-decoration: underline;
   color: #ffd1e7;
 }
-
-/* Note */
 .note {
   font-size: 12px;
   color: #9e8490;
@@ -198,107 +186,77 @@ button:active {
 }
 </style>
 </head>
-
 <body>
-
 <div class="card">
-
   <h1>CSY CLAN APPLICATION FORM</h1>
-
   <p class="subtitle">
     Complete the form to submit your application.
   </p>
-
   <form id="applicationForm">
-
     <label for="name">Full Name</label>
-
     <input
       id="name"
       type="text"
       placeholder="Enter your full name"
       required
     >
-
-
     <label for="birthday">Birthday</label>
-
     <input
       id="birthday"
       type="date"
       required
     >
-
-
     <label for="selfie">Your Photo</label>
-
     <input
       type="file"
       id="selfie"
       accept="image/*"
       required
     >
-
     <img
       id="selfiePreview"
       class="preview"
       alt="Your photo preview"
     >
-
-
     <label for="codmProfile">
       CODM Profile Picture
     </label>
-
     <input
       id="codmProfile"
       type="file"
       accept="image/*"
       required
     >
-
     <img
       id="codmPreview"
       class="preview"
       alt="CODM profile preview"
     >
-
-
     <label for="codmStreamer">
       CODM Profile Picture (Streamer Mode)
     </label>
-
     <input
       id="codmStreamer"
       type="file"
       accept="image/*"
       required
     >
-
     <img
       id="streamerPreview"
       class="preview"
       alt="Streamer mode preview"
     >
-
-
     <button
       type="submit"
       id="submitButton"
     >
       Submit Application
     </button>
-
   </form>
-
-
 <div id="success" class="success">
   <h2>✅ Application Submitted!</h2>
-
   <p>Thank you for submitting your CSY Clan application.</p>
-
   <p id="summary"></p>
-
   <a
     href="https://m.me/j/Abbx3UxaHJ1-_ulO/?send_source=gc%3Acopy_invite_link_c"
     target="_blank"
@@ -327,14 +285,12 @@ button:active {
       Cyber S1N
     </a>
   </p>
-
   <p>
     <i class="fa-brands fa-discord"></i>
     <a href="https://discord.gg/Xj7qjn4qT" target="_blank">
       S1N Esports
     </a>
   </p>
-
   <p>
     <i class="fa-solid fa-envelope"></i>
     <a href="mailto:cybers1n.official@gmail.com">
