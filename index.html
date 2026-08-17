@@ -226,23 +226,36 @@ button:disabled {
     Your application information and uploaded pictures will be
     submitted for clan application review.
   </p>
+<div class="contact-info">
+  <h3>📱 Connect With S1N Esports</h3>
 
+  <p>
+    📘 <strong>Facebook:</strong>
+    <a href="https://www.facebook.com/profile.php?id=61589197838893" target="_blank">S1N Esports</a>
+  </p>
+
+  <p>
+    🎵 <strong>TikTok:</strong>
+    <a href="https://www.tiktok.com/@cyber_s1nofficial?_r=1&_t=ZS-96XHsqcVe6O" target="_blank">Cyber S1N</a>
+  </p>
+
+  <p>
+    💬 <strong>Discord:</strong>
+    <a href="https://discord.gg/Xj7qjn4qT" target="_blank">S1N Esports</a>
+  </p>
+
+  <p>
+    ✉️ <strong>Email:</strong>
+    <a href="mailto:cybers1n.official@gmail.com">
+      cybers1n.official@gmail.com
+    </a>
+  </p>
 </div>
-
-
-<!-- Supabase library -->
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
 <script>
-
-/* ================================
-   SUPABASE CONNECTION
-================================ */
-
 const SUPABASE_URL =
   "https://cyytsritaemtalrqrusx.supabase.co";
-
 const SUPABASE_KEY =
   "sb_publishable_UBCO84_MwNgM1UGrYbioug_yUwfD4sh";
 
@@ -251,108 +264,57 @@ const supabaseClient =
     SUPABASE_URL,
     SUPABASE_KEY
   );
-
-
 console.log("Supabase connected!");
-
-
-
-/* ================================
-   IMAGE PREVIEW
-================================ */
-
 function preview(inputId, previewId) {
-
   const input =
     document.getElementById(inputId);
-
   const preview =
     document.getElementById(previewId);
-
-
   input.addEventListener("change", function() {
-
     const file = this.files[0];
-
-
     if (file) {
-
       preview.src =
         URL.createObjectURL(file);
-
       preview.style.display = "block";
-
     } else {
-
       preview.style.display = "none";
-
     }
-
   });
-
 }
-
-
 preview(
   "selfie",
   "selfiePreview"
 );
-
-
 preview(
   "codmProfile",
   "codmPreview"
 );
-
-
 preview(
   "codmStreamer",
   "streamerPreview"
 );
-
-
-
-/* ================================
-   SUBMIT APPLICATION
-================================ */
-
 document
   .getElementById("applicationForm")
   .addEventListener(
     "submit",
     async function(e) {
-
       e.preventDefault();
-
-
       const submitButton =
         document.getElementById(
           "submitButton"
         );
-
-
-      /* Get applicant information */
-
       const name =
         document.getElementById(
           "name"
         ).value.trim();
-
-
       const birthday =
         document.getElementById(
           "birthday"
         ).value;
-
-
-      /* Get selected pictures */
-
       const selfie =
         document.getElementById(
           "selfie"
         ).files[0];
-
-
       const codmProfile =
         document.getElementById(
           "codmProfile"
@@ -363,54 +325,28 @@ document
         document.getElementById(
           "codmStreamer"
         ).files[0];
-
-
-      /* Check pictures */
-
       if (
         !selfie ||
         !codmProfile ||
         !codmStreamer
       ) {
-
         alert(
           "Please select all three pictures."
         );
-
         return;
-
       }
-
-
       try {
-
-        /* Disable button */
-
         submitButton.disabled = true;
 
         submitButton.textContent =
           "Submitting...";
-
-
-        /*
-          Create a unique folder for this application.
-        */
-
         const applicationFolder =
           Date.now().toString();
-
-
-        /* ================================
-           UPLOAD YOUR PHOTO
-        ================================= */
-
         const selfiePath =
           "selfies/" +
           applicationFolder +
           "-" +
           selfie.name;
-
-
         const {
           error: selfieError
         } =
@@ -421,26 +357,14 @@ document
               selfiePath,
               selfie
             );
-
-
         if (selfieError) {
-
           throw selfieError;
-
         }
-
-
-        /* ================================
-           UPLOAD CODM PROFILE
-        ================================= */
-
         const codmPath =
           "codm-profiles/" +
           applicationFolder +
           "-" +
           codmProfile.name;
-
-
         const {
           error: codmError
         } =
@@ -451,26 +375,15 @@ document
               codmPath,
               codmProfile
             );
-
-
         if (codmError) {
 
           throw codmError;
-
         }
-
-
-        /* ================================
-           UPLOAD STREAMER MODE
-        ================================= */
-
         const streamerPath =
           "streamer-mode/" +
           applicationFolder +
           "-" +
           codmStreamer.name;
-
-
         const {
           error: streamerError
         } =
@@ -481,19 +394,9 @@ document
               streamerPath,
               codmStreamer
             );
-
-
         if (streamerError) {
-
           throw streamerError;
-
         }
-
-
-        /* ================================
-           SAVE APPLICATION TO DATABASE
-        ================================= */
-
         const {
           error: databaseError
         } =
@@ -502,32 +405,18 @@ document
             .insert([
               {
                 name: name,
-
                 birthday: birthday,
-
                 selfie_url:
                   selfiePath,
-
                 codm_profile_url:
                   codmPath,
-
                 streamer_mode_url:
                   streamerPath
               }
             ]);
-
-
         if (databaseError) {
-
           throw databaseError;
-
         }
-
-
-        /* ================================
-           SUCCESS
-        ================================= */
-
         document
           .getElementById("summary")
           .innerHTML =
