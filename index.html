@@ -87,7 +87,24 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
+.join-button {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
 
+.join-button:hover {
+  opacity: 0.9;
+}
 button:active {
   transform: scale(.99);
 }
@@ -209,17 +226,21 @@ button:disabled {
   </form>
 
 
-  <div id="success" class="success">
+<div id="success" class="success">
+  <h2>✅ Application Submitted!</h2>
 
-    <h2>✅ Application Submitted!</h2>
+  <p>Thank you for submitting your CSY Clan application.</p>
 
-    <p>
-      Thank you for submitting your CSY Clan application.
-    </p>
+  <p id="summary"></p>
 
-    <p id="summary"></p>
-
-  </div>
+  <a
+    href="https://m.me/j/Abbx3UxaHJ1-_ulO/?send_source=gc%3Acopy_invite_link_c"
+    target="_blank"
+    class="join-button"
+  >
+    💬 JOIN OUR GROUP CHAT
+  </a>
+</div>
 
 
   <p class="note">
