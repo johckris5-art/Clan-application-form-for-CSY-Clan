@@ -14,57 +14,77 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0b1120;
+  background:
+    radial-gradient(circle at top left, rgba(255, 150, 200, 0.18), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(255, 105, 180, 0.15), transparent 35%),
+    #050505;
   color: #fff;
   min-height: 100vh;
-  padding: 20px 12px;
+  padding: 25px 12px;
 }
 
+/* Main registration card */
 .card {
   width: 100%;
   max-width: 520px;
   margin: auto;
-  background: #172033;
+  background: rgba(10, 10, 10, 0.95);
+  border: 1px solid #ff9dcc;
   border-radius: 18px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  padding: 25px;
+  box-shadow:
+    0 0 20px rgba(255, 157, 204, 0.18),
+    0 10px 40px rgba(0, 0, 0, 0.7);
 }
 
+/* Title */
 h1 {
   text-align: center;
-  font-size: 25px;
+  font-size: 26px;
   margin: 0 0 8px;
+  color: #ffd1e7;
+  text-shadow: 0 0 12px rgba(255, 157, 204, 0.8);
 }
 
 .subtitle {
   text-align: center;
-  color: #b9c4d6;
+  color: #d9b8c8;
   margin: 0 0 25px;
   font-size: 14px;
 }
 
+/* Labels */
 label {
   display: block;
   font-weight: bold;
   margin: 18px 0 7px;
+  color: #ffc1df;
 }
 
+/* Text/date/file inputs */
 input[type=text],
 input[type=date],
 input[type=file] {
   width: 100%;
   padding: 13px;
-  border: 1px solid #39465d;
+  border: 1px solid #70445a;
   border-radius: 9px;
-  background: #0f172a;
+  background: #0b0b0b;
   color: #fff;
   font-size: 15px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #ff9dcc;
+  box-shadow: 0 0 10px rgba(255, 157, 204, 0.35);
 }
 
 input[type=file] {
   padding: 10px;
 }
 
+/* Image preview */
 .preview {
   display: none;
   width: 100%;
@@ -72,90 +92,109 @@ input[type=file] {
   object-fit: contain;
   margin-top: 10px;
   border-radius: 10px;
-  background: #0f172a;
+  background: #050505;
+  border: 1px solid #6e4056;
 }
 
+/* Submit button */
 button {
   width: 100%;
   padding: 14px;
   border: 0;
   border-radius: 10px;
   margin-top: 25px;
-  background: #2563eb;
-  color: #fff;
+  background: linear-gradient(135deg, #ffb6d9, #ff72b6);
+  color: #12070d;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 0 18px rgba(255, 114, 182, 0.45);
+  transition: 0.2s;
 }
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(255, 157, 204, 0.75);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Success message */
+.success {
+  display: none;
+  text-align: center;
+  background: #0b080a;
+  border: 1px solid #ff9dcc;
+  padding: 18px;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 0 15px rgba(255, 157, 204, 0.2);
+}
+
+.success h2 {
+  color: #ffb6d9;
+}
+
+/* Group chat button */
 .join-button {
   display: block;
   width: 100%;
   padding: 14px;
-  margin-top: 20px;
-  background: #2563eb;
-  color: white;
-  text-decoration: none;
+  margin-top: 18px;
   border-radius: 10px;
-  font-size: 16px;
+  background: linear-gradient(135deg, #ffb6d9, #ff72b6);
+  color: #12070d;
+  text-decoration: none;
   font-weight: bold;
   text-align: center;
-  cursor: pointer;
+  box-shadow: 0 0 18px rgba(255, 114, 182, 0.4);
+  transition: 0.2s;
 }
 
 .join-button:hover {
   opacity: 0.9;
+  box-shadow: 0 0 25px rgba(255, 157, 204, 0.7);
 }
+
+/* Contact section */
 .contact-info {
   margin-top: 25px;
   padding-top: 20px;
-  border-top: 1px solid #39465d;
+  border-top: 1px solid #70445a;
   text-align: center;
 }
 
 .contact-info h3 {
   margin: 0 0 15px;
-  font-size: 18px;
+  color: #ffb6d9;
 }
 
 .contact-info p {
   margin: 10px 0;
-  color: #b9c4d6;
+  color: #d9b8c8;
   font-size: 14px;
 }
 
 .contact-info a {
-  color: #60a5fa;
+  color: #ff9dcc;
   text-decoration: none;
   font-weight: bold;
 }
 
 .contact-info a:hover {
   text-decoration: underline;
-}
-button:active {
-  transform: scale(.99);
+  color: #ffd1e7;
 }
 
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.success {
-  display: none;
-  text-align: center;
-  background: #132e24;
-  border: 1px solid #1f9d67;
-  padding: 18px;
-  border-radius: 12px;
-  margin-top: 20px;
-}
-
+/* Note */
 .note {
   font-size: 12px;
-  color: #9ca9bd;
+  color: #9e8490;
   line-height: 1.5;
   margin-top: 18px;
+  text-align: center;
 }
 </style>
 </head>
