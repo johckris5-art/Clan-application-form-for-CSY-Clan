@@ -345,33 +345,41 @@ document
   .addEventListener(
     "submit",
     async function(e) {
-      e.preventDefault();
-      const submitButton =
-        document.getElementById(
-          "submitButton"
-        );
-      const name =
-        document.getElementById(
-          "name"
-        ).value.trim();
-      const birthday =
-        document.getElementById(
-          "birthday"
-        ).value;
-      const selfie =
-        document.getElementById(
-          "selfie"
-        ).files[0];
-      const codmProfile =
-        document.getElementById(
-          "codmProfile"
-        ).files[0];
 
+      e.preventDefault();
+
+      const submitButton =
+        document.getElementById("submitButton");
+
+      // Get applicant information
+      const name =
+        document.getElementById("name")
+        .value
+        .trim();
+
+      const birthday =
+        document.getElementById("birthday")
+        .value;
+
+      // Make the name safe for the file name
+      const safeName = name
+        .replace(/\s+/g, "_")
+        .replace(/[^a-zA-Z0-9_-]/g, "");
+
+      // Get uploaded pictures
+      const selfie =
+        document.getElementById("selfie")
+        .files[0];
+
+      const codmProfile =
+        document.getElementById("codmProfile")
+        .files[0];
 
       const codmStreamer =
-        document.getElementById(
-          "codmStreamer"
-        ).files[0];
+        document.getElementById("codmStreamer")
+        .files[0];
+
+      // Check if all pictures are selected
       if (
         !selfie ||
         !codmProfile ||
@@ -382,18 +390,45 @@ document
         );
         return;
       }
+
       try {
+
         submitButton.disabled = true;
 
         submitButton.textContent =
           "Submitting...";
-        const applicationFolder =
-          Date.now().toString();
+
+        // Unique timestamp
+        const timestamp = Date.now();
+
+        // PHOTO PATHS WITH APPLICANT NAME
+
         const selfiePath =
           "selfies/" +
-          applicationFolder +
+          safeName +
+          "-" +
+          timestamp +
           "-" +
           selfie.name;
+
+        const codmPath =
+          "codm-profiles/" +
+          safeName +
+          "-" +
+          timestamp +
+          "-" +
+          codmProfile.name;
+
+        const streamerPath =
+          "streamer-mode/" +
+          safeName +
+          "-" +
+          timestamp +
+          "-" +
+          codmStreamer.name;
+
+
+        // Upload selfie
         const {
           error: selfieError
         } =
@@ -404,14 +439,13 @@ document
               selfiePath,
               selfie
             );
+
         if (selfieError) {
           throw selfieError;
         }
-        const codmPath =
-          "codm-profiles/" +
-          applicationFolder +
-          "-" +
-          codmProfile.name;
+
+
+        // Upload CODM profile
         const {
           error: codmError
         } =
@@ -422,15 +456,13 @@ document
               codmPath,
               codmProfile
             );
-        if (codmError) {
 
+        if (codmError) {
           throw codmError;
         }
-        const streamerPath =
-          "streamer-mode/" +
-          applicationFolder +
-          "-" +
-          codmStreamer.name;
+
+
+        // Upload streamer mode picture
         const {
           error: streamerError
         } =
@@ -441,9 +473,13 @@ document
               streamerPath,
               codmStreamer
             );
+
         if (streamerError) {
           throw streamerError;
         }
+
+
+        // Save application to database
         const {
           error: databaseError
         } =
@@ -453,17 +489,18 @@ document
               {
                 name: name,
                 birthday: birthday,
-                selfie_url:
-                  selfiePath,
-                codm_profile_url:
-                  codmPath,
-                streamer_mode_url:
-                  streamerPath
+                selfie_url: selfiePath,
+                codm_profile_url: codmPath,
+                streamer_mode_url: streamerPath
               }
             ]);
+
         if (databaseError) {
           throw databaseError;
         }
+
+
+        // Show applicant information
         document
           .getElementById("summary")
           .innerHTML =
@@ -473,11 +510,13 @@ document
             birthday;
 
 
+        // Hide form
         document
           .getElementById("applicationForm")
           .style.display = "none";
 
 
+        // Show success message
         document
           .getElementById("success")
           .style.display = "block";
@@ -495,20 +534,15 @@ document
           error
         );
 
-
         alert(
           "Submission failed: " +
           error.message
         );
 
-
-        /* Enable button again */
-
         submitButton.disabled = false;
 
         submitButton.textContent =
           "Submit Application";
-
       }
 
     }
