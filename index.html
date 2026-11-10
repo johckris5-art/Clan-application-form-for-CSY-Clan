@@ -4,12 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CSY Clan Application Form</title>
+
 <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 <style>
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -20,6 +23,7 @@ body {
   overflow-x: hidden;
   background: #050505;
 }
+
 body::before {
   content: "";
   position: fixed;
@@ -32,6 +36,7 @@ body::before {
   transform: scale(1.05);
   z-index: -2;
 }
+
 body::after {
   content: "";
   position: fixed;
@@ -39,6 +44,7 @@ body::after {
   background: rgba(0, 0, 0, 0.55);
   z-index: -1;
 }
+
 .card {
   width: 100%;
   max-width: 520px;
@@ -52,6 +58,7 @@ body::after {
     0 10px 40px rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
 }
+
 h1 {
   text-align: center;
   font-size: 26px;
@@ -59,18 +66,21 @@ h1 {
   color: #ffd1e7;
   text-shadow: 0 0 12px rgba(255, 157, 204, 0.8);
 }
+
 .subtitle {
   text-align: center;
   color: #d9b8c8;
   margin: 0 0 25px;
   font-size: 14px;
 }
+
 label {
   display: block;
   font-weight: bold;
   margin: 18px 0 7px;
   color: #ffc1df;
 }
+
 input[type=text],
 input[type=date],
 input[type=file] {
@@ -83,13 +93,16 @@ input[type=file] {
   font-size: 15px;
   outline: none;
 }
+
 input:focus {
   border-color: #ff9dcc;
   box-shadow: 0 0 10px rgba(255, 157, 204, 0.35);
 }
+
 input[type=file] {
   padding: 10px;
 }
+
 .preview {
   display: none;
   width: 100%;
@@ -100,6 +113,7 @@ input[type=file] {
   background: #050505;
   border: 1px solid #6e4056;
 }
+
 button {
   width: 100%;
   padding: 14px;
@@ -114,13 +128,16 @@ button {
   box-shadow: 0 0 18px rgba(255, 114, 182, 0.45);
   transition: 0.2s;
 }
+
 button:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 25px rgba(255, 157, 204, 0.75);
 }
+
 button:active {
   transform: scale(0.98);
 }
+
 .success {
   display: none;
   text-align: center;
@@ -131,9 +148,11 @@ button:active {
   margin-top: 20px;
   box-shadow: 0 0 15px rgba(255, 157, 204, 0.2);
 }
+
 .success h2 {
   color: #ffb6d9;
 }
+
 .join-button {
   display: block;
   width: 100%;
@@ -148,16 +167,19 @@ button:active {
   box-shadow: 0 0 18px rgba(255, 114, 182, 0.4);
   transition: 0.2s;
 }
+
 .join-button:hover {
   opacity: 0.9;
   box-shadow: 0 0 25px rgba(255, 157, 204, 0.7);
 }
+
 .contact-info {
   margin-top: 25px;
   padding-top: 20px;
   border-top: 1px solid #70445a;
   text-align: center;
 }
+
 .contact-info h3 {
   margin: 0 0 15px;
   color: #ffb6d9;
@@ -168,15 +190,18 @@ button:active {
   color: #d9b8c8;
   font-size: 14px;
 }
+
 .contact-info a {
   color: #ff9dcc;
   text-decoration: none;
   font-weight: bold;
 }
+
 .contact-info a:hover {
   text-decoration: underline;
   color: #ffd1e7;
 }
+
 .note {
   font-size: 12px;
   color: #9e8490;
@@ -186,13 +211,19 @@ button:active {
 }
 </style>
 </head>
+
 <body>
+
 <div class="card">
+
   <h1>CSY CLAN APPLICATION FORM</h1>
+
   <p class="subtitle">
     Complete the form to submit your application.
   </p>
+
   <form id="applicationForm">
+
     <label for="name">Full Name</label>
     <input
       id="name"
@@ -200,12 +231,14 @@ button:active {
       placeholder="Enter your full name"
       required
     >
+
     <label for="birthday">Birthday</label>
     <input
       id="birthday"
       type="date"
       required
     >
+
     <label for="selfie">Your Photo</label>
     <input
       type="file"
@@ -213,96 +246,105 @@ button:active {
       accept="image/*"
       required
     >
+
     <img
       id="selfiePreview"
       class="preview"
       alt="Your photo preview"
     >
-    <label for="codmProfile">
-      CODM Profile Screenshot
-    </label>
-    <input
-      id="codmProfile"
-      type="file"
-      accept="image/*"
-      required
-    >
-    <img
-      id="codmPreview"
-      class="preview"
-      alt="CODM profile preview"
-    >
-    <label for="codmStreamer">
-      CODM Profile Screenshot (Streamer Mode)
-    </label>
-    <input
-      id="codmStreamer"
-      type="file"
-      accept="image/*"
-      required
-    >
-    <img
-      id="streamerPreview"
-      class="preview"
-      alt="Streamer mode preview"
-    >
+
     <button
       type="submit"
       id="submitButton"
     >
       Submit Application
     </button>
+
   </form>
-<div id="success" class="success">
-  <h2>✅ Application Submitted!</h2>
-  <p>Thank you for submitting your CSY Clan application.</p>
-  <p id="summary"></p>
-  <a
-    href="https://m.me/j/Abbx3UxaHJ1-_ulO/?send_source=gc%3Acopy_invite_link_c"
-    target="_blank"
-    class="join-button"
-  >
-    CLICK HERE TO JOIN OUR SCREENING GC
-  </a>
-</div>
+
+  <div id="success" class="success">
+
+    <h2>✅ Application Submitted!</h2>
+
+    <p>
+      Thank you for submitting your CSY Clan application.
+    </p>
+
+    <p id="summary"></p>
+
+    <a
+      href="https://m.me/j/Abbx3UxaHJ1-_ulO/?send_source=gc%3Acopy_invite_link_c"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="join-button"
+    >
+      CLICK HERE TO JOIN OUR SCREENING GC
+    </a>
+
+  </div>
+
   <p class="note">
-    Your application information and uploaded pictures will be
+    Your application information and uploaded picture will be
     submitted for clan application review.
   </p>
-<div class="contact-info">
-  <h3>  Connect With CSY Esports</h3>
 
-  <p>
-    <i class="fa-brands fa-facebook"></i>
-    <a href="https://www.facebook.com/profile.php?id=61589197838893" target="_blank">
-      CSY Esports (Facebook)
-    </a>
-  </p>
+  <div class="contact-info">
 
-  <p>
-    <i class="fa-brands fa-tiktok"></i>
-    <a href="https://www.tiktok.com/@cyber_s1nofficial?_r=1&_t=ZS-96XHsqcVe6O" target="_blank">
-      CSY Esports (Tiktok)
-    </a>
-  </p>
-  <p>
-    <i class="fa-brands fa-discord"></i>
-    <a href="https://discord.gg/Xj7qjn4qT" target="_blank">
-      CSY Esports (Discord)
-    </a>
-  </p>
-  <p>
-    <i class="fa-solid fa-envelope"></i>
-    <a href="mailto:cybers1n.official@gmail.com">
-      cybers1n.official@gmail.com
-    </a>
-  </p>
+    <h3>Connect With CSY Esports</h3>
+
+    <p>
+      <i class="fa-brands fa-facebook"></i>
+      <a
+        href="https://www.facebook.com/profile.php?id=61589197838893"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        CSY Esports (Facebook)
+      </a>
+    </p>
+
+    <p>
+      <i class="fa-brands fa-tiktok"></i>
+      <a
+        href="https://www.tiktok.com/@cyber_s1nofficial?_r=1&_t=ZS-96XHsqcVe6O"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        CSY Esports (Tiktok)
+      </a>
+    </p>
+
+    <p>
+      <i class="fa-brands fa-discord"></i>
+      <a
+        href="https://discord.gg/Xj7qjn4qT"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        CSY Esports (Discord)
+      </a>
+    </p>
+
+    <p>
+      <i class="fa-solid fa-envelope"></i>
+      <a href="mailto:cybers1n.official@gmail.com">
+        cybers1n.official@gmail.com
+      </a>
+    </p>
+
+  </div>
+
 </div>
-</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+// SUPABASE CONFIGURATION
+
 const SUPABASE_URL =
   "https://cyytsritaemtalrqrusx.supabase.co";
+
 const SUPABASE_KEY =
   "sb_publishable_UBCO84_MwNgM1UGrYbioug_yUwfD4sh";
 
@@ -311,242 +353,193 @@ const supabaseClient =
     SUPABASE_URL,
     SUPABASE_KEY
   );
+
 console.log("Supabase connected!");
+
+
+// PHOTO PREVIEW
+
 function preview(inputId, previewId) {
+
   const input =
     document.getElementById(inputId);
-  const preview =
+
+  const previewImage =
     document.getElementById(previewId);
+
   input.addEventListener("change", function() {
+
     const file = this.files[0];
+
     if (file) {
-      preview.src =
+
+      previewImage.src =
         URL.createObjectURL(file);
-      preview.style.display = "block";
+
+      previewImage.style.display = "block";
+
     } else {
-      preview.style.display = "none";
+
+      previewImage.style.display = "none";
+
     }
+
   });
+
 }
-preview(
-  "selfie",
-  "selfiePreview"
-);
-preview(
-  "codmProfile",
-  "codmPreview"
-);
-preview(
-  "codmStreamer",
-  "streamerPreview"
-);
+
+preview("selfie", "selfiePreview");
+
+
+// APPLICATION SUBMISSION
+
 document
   .getElementById("applicationForm")
-  .addEventListener(
-    "submit",
-    async function(e) {
+  .addEventListener("submit", async function(e) {
 
-      e.preventDefault();
+    e.preventDefault();
 
-      const submitButton =
-        document.getElementById("submitButton");
+    const submitButton =
+      document.getElementById("submitButton");
 
-      // Get applicant information
-      const name =
-        document.getElementById("name")
-        .value
-        .trim();
+    // GET APPLICANT INFORMATION
 
-      const birthday =
-        document.getElementById("birthday")
-        .value;
+    const name =
+      document.getElementById("name")
+      .value
+      .trim();
 
-      // Make the name safe for the file name
-      const safeName = name
-        .replace(/\s+/g, "_")
-        .replace(/[^a-zA-Z0-9_-]/g, "");
+    const birthday =
+      document.getElementById("birthday")
+      .value;
 
-      // Get uploaded pictures
-      const selfie =
-        document.getElementById("selfie")
-        .files[0];
+    // MAKE NAME SAFE FOR FILE NAME
 
-      const codmProfile =
-        document.getElementById("codmProfile")
-        .files[0];
+    const safeName = name
+      .replace(/\s+/g, "_")
+      .replace(/[^a-zA-Z0-9_-]/g, "");
 
-      const codmStreamer =
-        document.getElementById("codmStreamer")
-        .files[0];
+    // GET UPLOADED PHOTO
 
-      // Check if all pictures are selected
-      if (
-        !selfie ||
-        !codmProfile ||
-        !codmStreamer
-      ) {
-        alert(
-          "Please select all three pictures."
-        );
-        return;
-      }
+    const selfie =
+      document.getElementById("selfie")
+      .files[0];
 
-      try {
+    if (!selfie) {
 
-        submitButton.disabled = true;
+      alert("Please select your photo.");
 
-        submitButton.textContent =
-          "Submitting...";
-
-        // Unique timestamp
-        const timestamp = Date.now();
-
-        // PHOTO PATHS WITH APPLICANT NAME
-
-        const selfiePath =
-          "selfies/" +
-          safeName +
-          "-" +
-          timestamp +
-          "-" +
-          selfie.name;
-
-        const codmPath =
-          "codm-profiles/" +
-          safeName +
-          "-" +
-          timestamp +
-          "-" +
-          codmProfile.name;
-
-        const streamerPath =
-          "streamer-mode/" +
-          safeName +
-          "-" +
-          timestamp +
-          "-" +
-          codmStreamer.name;
-
-
-        // Upload selfie
-        const {
-          error: selfieError
-        } =
-          await supabaseClient
-            .storage
-            .from("application-photos")
-            .upload(
-              selfiePath,
-              selfie
-            );
-
-        if (selfieError) {
-          throw selfieError;
-        }
-
-
-        // Upload CODM profile
-        const {
-          error: codmError
-        } =
-          await supabaseClient
-            .storage
-            .from("application-photos")
-            .upload(
-              codmPath,
-              codmProfile
-            );
-
-        if (codmError) {
-          throw codmError;
-        }
-
-
-        // Upload streamer mode picture
-        const {
-          error: streamerError
-        } =
-          await supabaseClient
-            .storage
-            .from("application-photos")
-            .upload(
-              streamerPath,
-              codmStreamer
-            );
-
-        if (streamerError) {
-          throw streamerError;
-        }
-
-
-        // Save application to database
-        const {
-          error: databaseError
-        } =
-          await supabaseClient
-            .from("applications")
-            .insert([
-              {
-                name: name,
-                birthday: birthday,
-                selfie_url: selfiePath,
-                codm_profile_url: codmPath,
-                streamer_mode_url: streamerPath
-              }
-            ]);
-
-        if (databaseError) {
-          throw databaseError;
-        }
-
-
-        // Show applicant information
-        document
-          .getElementById("summary")
-          .innerHTML =
-            "<strong>Name:</strong> " +
-            name +
-            "<br><strong>Birthday:</strong> " +
-            birthday;
-
-
-        // Hide form
-        document
-          .getElementById("applicationForm")
-          .style.display = "none";
-
-
-        // Show success message
-        document
-          .getElementById("success")
-          .style.display = "block";
-
-
-        alert(
-          "Application submitted successfully!"
-        );
-
-
-      } catch (error) {
-
-        console.error(
-          "Submission error:",
-          error
-        );
-
-        alert(
-          "Submission failed: " +
-          error.message
-        );
-
-        submitButton.disabled = false;
-
-        submitButton.textContent =
-          "Submit Application";
-      }
+      return;
 
     }
-  );
+
+    try {
+
+      submitButton.disabled = true;
+
+      submitButton.textContent =
+        "Submitting...";
+
+      // UNIQUE TIMESTAMP
+
+      const timestamp = Date.now();
+
+      // PHOTO PATH
+
+      const selfiePath =
+        "selfies/" +
+        safeName +
+        "-" +
+        timestamp +
+        "-" +
+        selfie.name;
+
+      // UPLOAD SELFIE TO SUPABASE
+
+      const {
+        error: selfieError
+      } =
+        await supabaseClient
+          .storage
+          .from("application-photos")
+          .upload(
+            selfiePath,
+            selfie
+          );
+
+      if (selfieError) {
+
+        throw selfieError;
+
+      }
+
+      // SAVE APPLICATION TO DATABASE
+
+      const {
+        error: databaseError
+      } =
+        await supabaseClient
+          .from("applications")
+          .insert([
+            {
+              name: name,
+              birthday: birthday,
+              selfie_url: selfiePath
+            }
+          ]);
+
+      if (databaseError) {
+
+        throw databaseError;
+
+      }
+
+      // SHOW APPLICANT INFORMATION
+
+      document
+        .getElementById("summary")
+        .innerHTML =
+          "<strong>Name:</strong> " +
+          name +
+          "<br><strong>Birthday:</strong> " +
+          birthday;
+
+      // HIDE FORM
+
+      document
+        .getElementById("applicationForm")
+        .style.display = "none";
+
+      // SHOW SUCCESS MESSAGE
+
+      document
+        .getElementById("success")
+        .style.display = "block";
+
+      alert(
+        "Application submitted successfully!"
+      );
+
+    } catch (error) {
+
+      console.error(
+        "Submission error:",
+        error
+      );
+
+      alert(
+        "Submission failed: " +
+        error.message
+      );
+
+      submitButton.disabled = false;
+
+      submitButton.textContent =
+        "Submit Application";
+
+    }
+
+  });
 
 </script>
 
